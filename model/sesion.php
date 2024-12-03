@@ -32,7 +32,7 @@ class Sesion{
 	public function cerrarSesion(){
 		session_unset();
 		session_destroy();
-		header('Location: index.php?c=Sesion&a=Index');
+		header('Location: index.php?c=Sesion');
 	}
 }
 ?>

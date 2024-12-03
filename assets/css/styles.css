@@ -20,8 +20,8 @@ body{
 .tarjeta{
     border: 1px solid #002147;
     box-shadow: 10px 10px 5px 0px rgba(184,184,184,0.75);
--webkit-box-shadow: 10px 10px 5px 0px rgba(184,184,184,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(184,184,184,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(184,184,184,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(184,184,184,0.75);
 }
 .columna{
     height: 70vh;
@@ -34,4 +34,8 @@ body{
 .columna-izquierda{
     background: #002147;
     color: #fff;
+}
+
+.bg-institucional{
+    background-color: #002147;
 }
