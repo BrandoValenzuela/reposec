@@ -1,10 +1,10 @@
 <?php
-require_once 'model/sesion.php';
+require_once 'model/usuario.php';
 class SesionController{
     private $model;
     
     public function __CONSTRUCT(){
-        $this->model = new Sesion();
+        $this->model = new Usuario();
     }
     
     public function Index(){
@@ -15,12 +15,12 @@ class SesionController{
     }
     
     public function IniciarSesion(){
-        $sesion = new Sesion();
-        $sesion->email = $_POST['email'];
-        $sesion->clave = $_POST['clave'];
-        $usuario = $this->model->verificarCredenciales($sesion);
-        if (!empty($usuario)) {
-            $_SESSION = ['usuario' => $usuario->Nombre, 'apellidoUsuario' => $usuario->PrimerApellido, 'idUsuario' => $usuario->IdUsuario];
+        $usuario = new Usuario();
+        $usuario->email = $_POST['email'];
+        $usuario->clave = $_POST['clave'];
+        $colaborador = $this->model->verificarCredenciales($usuario);
+        if (!empty($colaborador)) {
+            $_SESSION = ['usuario' => $colaborador->Nombre, 'apellidoUsuario' => $colaborador->Apellidos, 'idUsuario' => $colaborador->IdUsuario];
             $_SESSION['tiempo'] = time();
             echo json_encode(['success' => true]);
         }
@@ -30,23 +30,19 @@ class SesionController{
     }
     
     public function CerrarSesion(){
-        echo 'Estoy aquí';
-        $this->model->cerrarSesion();
+        session_unset();
+        session_destroy();
+        header('Location: index.php?c=Sesion');
     }
 
-    // public function cerrarSesionPorInactividad(){
-    //     $mensaje = array(
-    //         'titulo' => 'Sesión cerrada automáticamente',
-    //         'cuerpo' => 'La sesión se ha cerrado por una inactividad mayor a 15 minutos. Vuelve a iniciar sesión para continuar trabajando.'
-    //     );
-    //     $redireccion = 'index.php';
-    //     include_once 'view/sesion.php';
-    //     require_once 'view/modal-mensajes.php';
-    // }
+    public function cerrarSesionPorInactividad(){
+        echo json_encode(['success' => false, 'message' => 'Usuario o contraseña incorrectos']);
+        require_once 'view/sesion.php';
+    }
     
 
     public function ErrorConexion(){
-       // require_once 'view/error.php';
+       require_once 'view/error.php';
     }
 }
 ?>

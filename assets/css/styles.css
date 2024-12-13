@@ -4,7 +4,7 @@
     padding: 0;
 }
 body{
-    background: #eee;
+    /* background: #eee; */
     font-family: "Lato", sans-serif;;
 }
 .img-principal{
@@ -38,4 +38,9 @@ body{
 
 .bg-institucional{
     background-color: #002147;
+}
+
+#copyright span{
+    font-size: 0.8rem;
+    font-style: italic;
 }
